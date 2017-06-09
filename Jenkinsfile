@@ -4,7 +4,7 @@ node('talentmap_image') {
         echo "${login}"
     }
     stage('Test Docker CLI') {
-        sh "FROM hello-world > Dockerfile"
+        sh "FROM scratch > Dockerfile"
         def docker = sh('docker build -t test .')
         echo "${docker}"
     }
