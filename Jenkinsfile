@@ -5,7 +5,7 @@ parallel tests_1: {
             echo "${login}"
         }
         stage('Test Docker CLI') {
-            sh "echo 'FROM scratch' > Dockerfile"
+            sh "echo \"FROM scratch\nRUN echo Hello\" > Dockerfile"
             def docker = sh('docker build -t test .')
             echo "${docker}"
         }
