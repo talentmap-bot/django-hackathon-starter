@@ -13,7 +13,7 @@ parallel tests_1: {
 }, tests_2: {
     node('talentmap_image') {
         stage('Test Python') {
-            def py = sh('python -version')
+            def py = sh('python --version')
             echo "${py}"
         }
         stage('Test NPM') {
