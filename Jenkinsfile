@@ -1,10 +1,11 @@
 node('talentmap_image') {
     stage('Test AWS CLI') {
-        def login = sh('aws ecr get-login --region us-east-1')
+        def login = getECRLoginCmd()
         echo "${login}"
     }
     stage('Test Docker CLI') {
-        def docker = sh('docker ps')
+        sh "FROM hello-world > Dockerfile"
+        def docker = sh('docker build -t test .')
         echo "${docker}"
     }
 }
@@ -17,4 +18,14 @@ node('talentmap_image') {
         def npm = sh('npm -v')
         echo "${npm}"
     }
+}
+
+def getECRLoginCmd() {
+    def loginCmd
+    stage ('Get ECR Login'){
+        sh "aws ecr get-login --region us-east-1 > login.txt"
+        loginCmd = readFile('login.txt')
+        sh "rm -f login.txt"
+    }
+    return loginCmd
 }
