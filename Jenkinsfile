@@ -1,4 +1,4 @@
-node {
+node('talentmap_image') {
     stage('Build') {
         def login = sh('aws ecr get-login --region us-east-1')
         echo "${login}"
