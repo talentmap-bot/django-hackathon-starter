@@ -24,16 +24,16 @@
 // }
 node('talentmap_image') {
     sh 'whoami'
-    stage('Test AWS CLI') {
-        def login = getECRLoginCmd()
-        echo "${login}"
-    }
+    //stage('Test AWS CLI') {
+    //    def login = getECRLoginCmd()
+    //    echo "${login}"
+    //}
     stage ('Checkout'){
         git branch: "${BRANCH_NAME}", credentialsId: '7a1c5125-103d-4a1a-8b2f-6a99da04d499', url: "https://github.com/cyber-swat-team/django-hackathon-starter"
     }   
     stage ('Build') {
         sh 'virtualenv venv'
-        sh 'source venv/bin/activate'
+        sh '/bin/bash -c "source venv/bin/activate"'
         sh 'pip install -r requirements.txt'
         sh 'npm install -g bower'
         sh 'bower install'
