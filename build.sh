@@ -5,5 +5,5 @@ source venv/bin/activate
 pip --no-cache-dir install -r requirements.txt
 npm install -g bower
 bower --allow-root install
-python manage.py makemigrations
-python manage.py migrate
+python hackathon_starter/manage.py makemigrations
+python hackathon_starter/manage.py migrate
