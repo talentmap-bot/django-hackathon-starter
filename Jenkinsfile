@@ -32,13 +32,14 @@ node('talentmap_image') {
         git branch: "${BRANCH_NAME}", credentialsId: '7a1c5125-103d-4a1a-8b2f-6a99da04d499', url: "https://github.com/cyber-swat-team/django-hackathon-starter"
     }   
     stage ('Build') {
-        sh 'virtualenv venv'
-        sh '. venv/bin/activate'
-        sh 'pip install -r requirements.txt'
-        sh 'npm install -g bower'
-        sh 'bower install'
-        sh 'python manage.py makemigrations'
-        sh 'python manage.py migrate'
+        sh '/bin/bash -c "build.sh"'
+        //sh 'virtualenv venv'
+        //sh '. venv/bin/activate'
+        //sh 'pip install -r requirements.txt'
+        //sh 'npm install -g bower'
+        //sh 'bower install'
+        //sh 'python manage.py makemigrations'
+        //sh 'python manage.py migrate'
     }
 }
 def getECRLoginCmd() {
