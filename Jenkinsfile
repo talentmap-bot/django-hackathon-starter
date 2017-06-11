@@ -6,16 +6,8 @@ node('talentmap_image') {
         sh 'chmod +x build.sh'
         sh './build.sh'
     }
-}
-stage('Test') {
-    parallel zap: {
-        node('talentmap_zap') {
-            sh 'echo "Testing using OWASP ZAP"'
-        }
-    },
-    bandit: {
-        node('talentmap_bandit') {
-            sh 'echo "Testing using Bandit"'
-        }
+    stage ('Test – Bandit') {
+        sh 'pip --no-cache-dir install bandit'
+        sh 'bandit -r .'
     }
 }
