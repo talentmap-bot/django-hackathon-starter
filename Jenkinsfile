@@ -33,7 +33,7 @@ node('talentmap_image') {
     }   
     stage ('Build') {
         sh 'virtualenv venv'
-        sh '/bin/bash -c "source venv/bin/activate"'
+        sh '. venv/bin/activate'
         sh 'pip install -r requirements.txt'
         sh 'npm install -g bower'
         sh 'bower install'
