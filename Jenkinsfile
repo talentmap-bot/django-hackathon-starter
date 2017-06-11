@@ -7,13 +7,15 @@ node('talentmap_image') {
         sh './build.sh'
     }
 }
-
-def getECRLoginCmd() {
-    def loginCmd
-    stage ('Get ECR Login'){
-        sh "aws ecr get-login --region us-east-1 > login.txt"
-        loginCmd = readFile('login.txt')
-        sh "rm -f login.txt"
+stage('Test') {
+    parallel zap: {
+        node('talentmap_zap') {
+            sh 'echo "Testing using OWASP ZAP"'
+        }
+    },
+    bandit: {
+        node('talentmap_bandit') {
+            sh 'echo "Testing using Bandit"'
+        }
     }
-    return loginCmd
 }
