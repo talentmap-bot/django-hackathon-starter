@@ -7,7 +7,7 @@ node('talentmap_image') {
             sh 'chmod +x build.sh'
             //sh './build.sh'
             buildDockerImage("talentmap/test")
-            def login = getECRLoginCmd()
+            def loginCmd = getECRLoginCmd()
             sh "echo '${loginCmd}'"
             //sh "${loginCmd}"
             pushDockerImage("talentmap/test","latest")
