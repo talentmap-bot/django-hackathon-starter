@@ -7,6 +7,8 @@ node('talentmap_image') {
             sh 'chmod +x build.sh'
             //sh './build.sh'
             buildDockerImage("talentmap/test")
+            def login = getECRLoginCmd()
+            sh "${loginCmd}"
             pushDockerImage("talentmap/test","latest")
         }
         stage ('Test – Bandit') {
@@ -21,9 +23,8 @@ node('talentmap_image') {
 
 def pushDockerImage(String dockerRepoName, String tag){
     stage ('Push Image') {
-        docker.withRegistry('https://346011101664.dkr.ecr.us-east-1.amazonaws.com', 'ecr:7a1c5125-103d-4a1a-8b2f-6a99da04d499') {
-            docker.image("${dockerRepoName}").push("${tag}")
-        }
+        docker.image("${dockerRepoName}").push("${tag}")
+        
     }
 }
 
@@ -36,7 +37,7 @@ def buildDockerImage(String dockerRepoName){
 def getECRLoginCmd() {
     def loginCmd
     stage ('Get ECR Login'){
-        sh "aws ecr get-login --region us-west-2 > login.txt"
+        sh "aws ecr get-login --region us-east-1 > login.txt"
         loginCmd = readFile('login.txt')
         sh "rm -f login.txt"
     }
