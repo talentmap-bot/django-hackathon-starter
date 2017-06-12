@@ -24,8 +24,9 @@ node('talentmap_image') {
 
 def pushDockerImage(String dockerRepoName, String tag){
     stage ('Push Image') {
-        docker.image("${dockerRepoName}").push("${tag}")
-        
+        docker.withRegistry("https://346011101664.dkr.ecr.us-east-1.amazonaws.com") {
+            docker.image("${dockerRepoName}").push("${tag}")
+        }
     }
 }
 
