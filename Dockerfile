@@ -9,4 +9,6 @@ ADD . /code/
 EXPOSE 8000
 
 RUN chmod +x /code/entrypoint.sh
+RUN chmod +x /code/build.sh
+
 ENTRYPOINT ["/code/entrypoint.sh"]
