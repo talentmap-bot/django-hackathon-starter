@@ -8,7 +8,8 @@ node('talentmap_image') {
             //sh './build.sh'
             buildDockerImage("talentmap/test")
             def login = getECRLoginCmd()
-            sh "${loginCmd}"
+            sh "echo '${loginCmd}'"
+            //sh "${loginCmd}"
             pushDockerImage("talentmap/test","latest")
         }
         stage ('Test – Bandit') {
