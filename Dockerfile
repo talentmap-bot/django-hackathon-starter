@@ -5,7 +5,7 @@ RUN mkdir /code/
 WORKDIR /code/
 ADD . /code/
 
-RUN ls -l
+RUN ls -l hackathon_starter
 # uWSGI will listen on this port
 EXPOSE 8000
 
