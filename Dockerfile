@@ -5,6 +5,7 @@ RUN mkdir /code/
 WORKDIR /code/
 ADD . /code/
 
+RUN ls -l
 # uWSGI will listen on this port
 EXPOSE 8000
 
