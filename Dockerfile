@@ -8,4 +8,4 @@ ADD . /code/
 # uWSGI will listen on this port
 EXPOSE 8000
 
-ENTRYPOINT ["/code/build.sh"]
+ENTRYPOINT ["/code/entrypoint.sh"]
