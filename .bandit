@@ -1,2 +1,2 @@
 [bandit]
-exclude: /test,/tests
+exclude: /test,/tests,hackathon_starter/hackathon/static/bower_components
