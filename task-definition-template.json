@@ -2,7 +2,7 @@
     "family": "test",
     "containerDefinitions": [
         {
-            "image": "346011101664.dkr.ecr.us-east-1.amazonaws.com/talentmap/test:v_%BRANCH%_%BUILD_NUMBER%",
+            "image": "346011101664.dkr.ecr.us-east-1.amazonaws.com/talentmap/test:%BUILD_TAG%",
             "name": "test",
             "cpu": 10,
             "memory": 256,
