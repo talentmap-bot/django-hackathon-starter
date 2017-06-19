@@ -1,0 +1,18 @@
+{
+    "family": "test",
+    "containerDefinitions": [
+        {
+            "image": "346011101664.dkr.ecr.us-east-1.amazonaws.com/talentmap/test:v_%BUILD_NUMBER%",
+            "name": "test",
+            "cpu": 10,
+            "memory": 256,
+            "essential": true,
+            "portMappings": [
+                {
+                    "containerPort": %CONTAINER_PORT%,
+                    "hostPort": %HOST_PORT%
+                }
+            ]
+        }
+    ]
+}
