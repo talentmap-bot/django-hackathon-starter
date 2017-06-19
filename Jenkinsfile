@@ -6,14 +6,17 @@ node('talentmap_build') {
         stage ('Build') {
             sh 'chmod +x build.sh'
             buildDockerImage("talentmap/test")
+        }
+        stage ('Push') {
             def loginCmd = getECRLoginCmd()
             sh "${loginCmd}"
             pushDockerImage("talentmap/test","latest")
         }
-        stage ('Test – Bandit') {
-            sh 'pip --no-cache-dir install bandit'
+        
+        //stage ('Test – Bandit') {
+        //    sh 'pip --no-cache-dir install bandit'
             //sh 'bandit -r .'
-        }
+        //}
     } catch (Exception err) {
         currentBuild.result = 'FAILURE' 
         println err
